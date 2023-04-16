@@ -23,12 +23,12 @@ public class InvokeNotificationsApi {
         String response = new String("hello paladin cloud");
         logger.log("inside handleRequest "+event);
         String jsonStr = gsonObj.toJson(event);
-        System.out.println("jsonStr -- "+jsonStr);
+        logger.log("jsonStr -- "+jsonStr);
         JsonParser jsonParser = new JsonParser();
         JsonObject policyParamsJson = (JsonObject) jsonParser.parse(jsonStr);
 
         JsonElement bodyJson = policyParamsJson.getAsJsonArray("Records").get(0);
-        System.out.println("bodyJson--"+bodyJson.toString());
+        logger.log("bodyJson--"+bodyJson.toString());
         String payload = bodyJson.getAsJsonObject().get("Sns").getAsJsonObject().get("Message").getAsString();
 
         logger.log("payload for invoking notifications "+payload);
